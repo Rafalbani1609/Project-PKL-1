@@ -1,0 +1,97 @@
+body {
+    padding: 0;
+    margin: 0;
+    background-image: url(1912_Upacara_Bela_Negara.jpeg);
+    background-size: cover;
+}
+
+h2 {
+    font-size: 37px;
+    text-align: center;
+    width: 400px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    margin: auto;
+    margin-top: 180px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    background-color: rgba(60, 60, 60);
+    opacity: 80%;
+    color: white;
+    box-shadow: black;
+}
+
+form {
+    font-family: arial;
+    width: 400px;
+    height: 250px;
+    margin: auto;
+    margin-top: 5px;
+    color: whitesmoke;
+    background-color: rgba(60, 60, 60);
+    opacity: 80%;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.container-al46 {
+    text-align: center;
+    padding: 20px;
+    padding-bottom: 40;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    display: inline-block;
+    padding: 2px 10px;
+    box-sizing: border-box;
+    margin: 8px 0px;
+    background: transparent;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #ffffff;
+    color: whitesmoke;
+}
+.tombol_login{
+    width: 70%;
+    padding: 4px 20px;
+    margin-top: 20px;
+    border: none;
+    outline: none;
+    background-color: #ffffff;
+    border-radius: 25px;
+    font-size: 18px;
+}
+
+
+.tombol_login:hover {
+    cursor: pointer;
+    background-color: blue;
+    color: white;
+}
+
+span.fpw {
+    float: left;
+    padding: 15px 0px;
+}
+
+a {
+    color: black;
+}
+
+.container-al46 .btn-login {
+    padding: 20px;
+}
+
+background-image {
+    filter: blur(10px);
+}
+.alert{
+    background: #e44e4e;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    border:1px solid #b32929;
+}
