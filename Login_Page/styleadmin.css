@@ -3,12 +3,8 @@ body {
     margin: 0;
 }
 
-.button a {
-    display: flex;
-    justify-content: space-between;
-    margin: 10px;
-    width: auto;
-    height: 30px
+.button .logout {
+    margin-left: 99rem;
 }
 
 

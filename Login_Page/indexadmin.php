@@ -10,8 +10,8 @@
 
 <body>
     <section class="button">
-        <a href="indexinput.php">Admin</a>
-        <a href="logout.php">Logout</a>
+        <a class = "admin" href="indexinput.php">Admin</a>
+        <a class = "logout" href="logout.php">Logout</a>
     </section>
     <section class="link">
         <a href="https://www.dicoding.com/">Link</a>
