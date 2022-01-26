@@ -8,10 +8,10 @@ $koneksi    = mysqli_connect($host, $user, $pass, $db);
 if (!$koneksi) { //cek koneksi
     die("Tidak bisa terkoneksi ke database");
 }
-$nim        = "";
 $nama       = "";
-$alamat     = "";
-$fakultas   = "";
+$username   = "";
+$password   = "";
+$level      = "";
 $sukses     = "";
 $error      = "";
 
@@ -22,7 +22,7 @@ if (isset($_GET['op'])) {
 }
 if($op == 'delete'){
     $id         = $_GET['id'];
-    $sql1       = "delete from mahasiswa where id = '$id'";
+    $sql1       = "delete from user where id = '$id'";
     $q1         = mysqli_query($koneksi,$sql1);
     if($q1){
         $sukses = "Berhasil hapus data";
@@ -32,27 +32,27 @@ if($op == 'delete'){
 }
 if ($op == 'edit') {
     $id         = $_GET['id'];
-    $sql1       = "select * from mahasiswa where id = '$id'";
+    $sql1       = "select * from user where id = '$id'";
     $q1         = mysqli_query($koneksi, $sql1);
     $r1         = mysqli_fetch_array($q1);
-    $nim        = $r1['nim'];
     $nama       = $r1['nama'];
-    $alamat     = $r1['alamat'];
-    $fakultas   = $r1['fakultas'];
+    $username   = $r1['username'];
+    $password   = $r1['password'];
+    $level      = $r1['level'];
 
-    if ($nim == '') {
+    if ($nama == '') {
         $error = "Data tidak ditemukan";
     }
 }
 if (isset($_POST['simpan'])) { //untuk create
-    $nim        = $_POST['nim'];
     $nama       = $_POST['nama'];
-    $alamat     = $_POST['alamat'];
-    $fakultas   = $_POST['fakultas'];
+    $username   = $_POST['username'];
+    $password   = $_POST['password'];
+    $level      = $_POST['level'];
 
-    if ($nim && $nama && $alamat && $fakultas) {
+    if ($nama && $username && $password && $level) {
         if ($op == 'edit') { //untuk update
-            $sql1       = "update mahasiswa set nim = '$nim',nama='$nama',alamat = '$alamat',fakultas='$fakultas' where id = '$id'";
+            $sql1       = "update user set nama = '$nama',username='$username',password='$password',level='$level' where id = '$id'";
             $q1         = mysqli_query($koneksi, $sql1);
             if ($q1) {
                 $sukses = "Data berhasil diupdate";
@@ -60,7 +60,7 @@ if (isset($_POST['simpan'])) { //untuk create
                 $error  = "Data gagal diupdate";
             }
         } else { //untuk insert
-            $sql1   = "insert into mahasiswa(nim,nama,alamat,fakultas) values ('$nim','$nama','$alamat','$fakultas')";
+            $sql1   = "insert into user(nama,username,password,level) values ('$nama','$username',''$password,'$level')";
             $q1     = mysqli_query($koneksi, $sql1);
             if ($q1) {
                 $sukses     = "Berhasil memasukkan data baru";
@@ -109,7 +109,7 @@ if (isset($_POST['simpan'])) { //untuk create
                         <?php echo $error ?>
                     </div>
                 <?php
-                    header("refresh:5;url=index.php");//5 : detik
+                    header("refresh:5;url=indexinput.php");//5 : detik
                 }
                 ?>
                 <?php
@@ -119,29 +119,35 @@ if (isset($_POST['simpan'])) { //untuk create
                         <?php echo $sukses ?>
                     </div>
                 <?php
-                    header("refresh:5;url=index.php");
+                    header("refresh:5;url=indexinput.php");
                 }
                 ?>
                 <form action="" method="POST">
                     <div class="mb-3 row">
-                        <label for="nim" class="col-sm-2 col-form-label">ID Login</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="nim" name="nim" value="<?php echo $nim ?>">
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="nama" class="col-sm-2 col-form-label">Name</label>
+                        <label for="nim" class="col-sm-2 col-form-label">Nama</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $nama ?>">
                         </div>
                     </div>
                     <div class="mb-3 row">
+                        <label for="nama" class="col-sm-2 col-form-label">Username</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="username" name="username" value="<?php echo $username ?>">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="alamat" class="col-sm-2 col-form-label">Password</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="password" name="password" value="<?php echo $password ?>">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
                         <label for="fakultas" class="col-sm-2 col-form-label">Admin/User</label>
                         <div class="col-sm-10">
-                            <select class="form-control" name="fakultas" id="fakultas">
+                            <select class="form-control" name="level" id="level">
                                 <option value="">- Pilih -</option>
-                                <option value="saintek" <?php if ($fakultas == "admin") echo "selected" ?>>admin</option>
-                                <option value="soshum" <?php if ($fakultas == "user") echo "selected" ?>>user</option>
+                                <option value="admin" <?php if ($level == "admin") echo "selected" ?>>admin</option>
+                                <option value="user" <?php if ($level == "user") echo "selected" ?>>user</option>
                             </select>
                         </div>
                     </div>
@@ -155,38 +161,39 @@ if (isset($_POST['simpan'])) { //untuk create
         <!-- untuk mengeluarkan data -->
         <div class="card">
             <div class="card-header text-white bg-secondary">
-                Data Mahasiswa
+                User List
             </div>
             <div class="card-body">
                 <table class="table">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">ID Login</th>
                             <th scope="col">Name</th>
+                            <th scope="col">Username</th>
+                            <th scope="col">Password</th>
                             <th scope="col">Sebagai</th>
                             <th scope="col">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-                        $sql2   = "select * from mahasiswa order by id desc";
+                        $sql2   = "select * from user order by id desc";
                         $q2     = mysqli_query($koneksi, $sql2);
                         $urut   = 1;
                         while ($r2 = mysqli_fetch_array($q2)) {
-                            $id         = $r2['id'];
-                            $nim        = $r2['nim'];
-                            $nama       = $r2['nama'];
-                            $alamat     = $r2['alamat'];
-                            $fakultas   = $r2['fakultas'];
+                            $id             = $r2['id'];
+                            $nama           = $r2['nama'];
+                            $username       = $r2['username'];
+                            $password       = $r2['password'];
+                            $level          = $r2['level'];
 
                         ?>
                             <tr>
                                 <th scope="row"><?php echo $urut++ ?></th>
-                                <td scope="row"><?php echo $nim ?></td>
                                 <td scope="row"><?php echo $nama ?></td>
-                                <td scope="row"><?php echo $alamat ?></td>
-                                <td scope="row"><?php echo $fakultas ?></td>
+                                <td scope="row"><?php echo $username ?></td>
+                                <td scope="row"><?php echo $password ?></td>
+                                <td scope="row"><?php echo $level ?></td>
                                 <td scope="row">
                                     <a href="index.php?op=edit&id=<?php echo $id ?>"><button type="button" class="btn btn-warning">Edit</button></a>
                                     <a href="index.php?op=delete&id=<?php echo $id?>" onclick="return confirm('Yakin mau delete data?')"><button type="button" class="btn btn-danger">Delete</button></a>            
