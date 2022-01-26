@@ -3,6 +3,10 @@ body {
     margin: 0;
 }
 
+.button .logout {
+    margin-left: 100rem;
+}
+
 .link a {
     margin: auto;
     padding-left: 50%;
