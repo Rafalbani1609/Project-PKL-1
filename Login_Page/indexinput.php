@@ -1,19 +1,13 @@
 <?php
-$host       = "localhost";
-$user       = "root";
-$pass       = "";
-$db         = "akademik";
 
-$koneksi    = mysqli_connect($host, $user, $pass, $db);
-if (!$koneksi) { //cek koneksi
-    die("Tidak bisa terkoneksi ke database");
-}
-$nama       = "";
-$username   = "";
-$password   = "";
-$level      = "";
-$sukses     = "";
-$error      = "";
+include 'koneksi.php';
+
+$nama        = "";
+$username    = "";
+$password    = "";
+$level       = "";
+$sukses      = "";
+$error       = "";
 
 if (isset($_GET['op'])) {
     $op = $_GET['op'];
@@ -52,7 +46,7 @@ if (isset($_POST['simpan'])) { //untuk create
 
     if ($nama && $username && $password && $level) {
         if ($op == 'edit') { //untuk update
-            $sql1       = "update user set nama = '$nama',username='$username',password='$password',level='$level' where id = '$id'";
+            $sql1       = "update user set nama = '$nama',username='$username',password = '$password',level='$level' where id = '$id'";
             $q1         = mysqli_query($koneksi, $sql1);
             if ($q1) {
                 $sukses = "Data berhasil diupdate";
@@ -60,7 +54,7 @@ if (isset($_POST['simpan'])) { //untuk create
                 $error  = "Data gagal diupdate";
             }
         } else { //untuk insert
-            $sql1   = "insert into user(nama,username,password,level) values ('$nama','$username',''$password,'$level')";
+            $sql1   = "insert into user(nama,username,password,level) values ('$nama','$username','$password','$level')";
             $q1     = mysqli_query($koneksi, $sql1);
             if ($q1) {
                 $sukses     = "Berhasil memasukkan data baru";
@@ -80,7 +74,7 @@ if (isset($_POST['simpan'])) { //untuk create
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Tab</title>
+    <title>Admin Page</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <style>
         .mx-auto {
@@ -94,7 +88,7 @@ if (isset($_POST['simpan'])) { //untuk create
 </head>
 
 <body>
-<a href="indexadmin.php" style ="margin-left: 100rem; margin-top: 30px;" >Back</a>
+<a href="indexadmin.php" style ="margin-left: 100rem; margin-top: 30px;">Back</a>
     <div class="mx-auto">
         <!-- untuk memasukkan data -->
         <div class="card">
@@ -119,7 +113,7 @@ if (isset($_POST['simpan'])) { //untuk create
                         <?php echo $sukses ?>
                     </div>
                 <?php
-                    header("refresh:5;url=indexinput.php");//5 : detik
+                    header("refresh:5;url=indexinput.php");
                 }
                 ?>
                 <form action="" method="POST">
@@ -146,8 +140,8 @@ if (isset($_POST['simpan'])) { //untuk create
                         <div class="col-sm-10">
                             <select class="form-control" name="level" id="level">
                                 <option value="">- Pilih -</option>
-                                <option value="admin" <?php if ($level == "admin") echo "selected" ?>>admin</option>
-                                <option value="user" <?php if ($level == "user") echo "selected" ?>>user</option>
+                                <option value="Admin" <?php if ($level == "Admin") echo "selected" ?>>Admin</option>
+                                <option value="User" <?php if ($level == "User") echo "selected" ?>>User</option>
                             </select>
                         </div>
                     </div>
@@ -168,7 +162,7 @@ if (isset($_POST['simpan'])) { //untuk create
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Name</th>
+                            <th scope="col">Nama</th>
                             <th scope="col">Username</th>
                             <th scope="col">Password</th>
                             <th scope="col">Sebagai</th>
@@ -181,11 +175,11 @@ if (isset($_POST['simpan'])) { //untuk create
                         $q2     = mysqli_query($koneksi, $sql2);
                         $urut   = 1;
                         while ($r2 = mysqli_fetch_array($q2)) {
-                            $id             = $r2['id'];
-                            $nama           = $r2['nama'];
-                            $username       = $r2['username'];
-                            $password       = $r2['password'];
-                            $level          = $r2['level'];
+                            $id         = $r2['id'];
+                            $nama       = $r2['nama'];
+                            $username   = $r2['username'];
+                            $password   = $r2['password'];
+                            $level      = $r2['level'];
 
                         ?>
                             <tr>
@@ -195,8 +189,8 @@ if (isset($_POST['simpan'])) { //untuk create
                                 <td scope="row"><?php echo $password ?></td>
                                 <td scope="row"><?php echo $level ?></td>
                                 <td scope="row">
-                                    <a href="index.php?op=edit&id=<?php echo $id ?>"><button type="button" class="btn btn-warning">Edit</button></a>
-                                    <a href="index.php?op=delete&id=<?php echo $id?>" onclick="return confirm('Yakin mau delete data?')"><button type="button" class="btn btn-danger">Delete</button></a>            
+                                    <a href="indexinput.php?op=edit&id=<?php echo $id ?>"><button type="button" class="btn btn-warning">Edit</button></a>
+                                    <a href="indexinput.php?op=delete&id=<?php echo $id?>" onclick="return confirm('Yakin mau delete data?')"><button type="button" class="btn btn-danger">Delete</button></a>            
                                 </td>
                             </tr>
                         <?php
