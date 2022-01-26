@@ -119,7 +119,7 @@ if (isset($_POST['simpan'])) { //untuk create
                         <?php echo $sukses ?>
                     </div>
                 <?php
-                    header("refresh:5;url=indexinput.php");
+                    header("refresh:5;url=indexinput.php");//5 : detik
                 }
                 ?>
                 <form action="" method="POST">
