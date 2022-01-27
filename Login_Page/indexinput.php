@@ -189,7 +189,7 @@ if (isset($_POST['simpan'])) { //untuk create
                                 <td scope="row"><?php echo $password ?></td>
                                 <td scope="row"><?php echo $level ?></td>
                                 <td scope="row">
-                                    <a href="indexinput.php?op=edit&id=<?php echo $id ?>"><button type="button" class="btn btn-warning">Edit</button></a>
+                                    <a href="indexinput.php?op=edit&id=<?php echo $id ?>"><button type="button" class="btn btn-primary">Edit</button></a>
                                     <a href="indexinput.php?op=delete&id=<?php echo $id?>" onclick="return confirm('Yakin mau delete data?')"><button type="button" class="btn btn-danger">Delete</button></a>            
                                 </td>
                             </tr>
