@@ -140,8 +140,8 @@ if (isset($_POST['simpan'])) { //untuk create
                         <div class="col-sm-10">
                             <select class="form-control" name="level" id="level">
                                 <option value="">- Pilih -</option>
-                                <option value="Admin" <?php if ($level == "Admin") echo "selected" ?>>Admin</option>
-                                <option value="User" <?php if ($level == "User") echo "selected" ?>>User</option>
+                                <option value="admin" <?php if ($level == "admin") echo "selected" ?>>Admin</option>
+                                <option value="user" <?php if ($level == "user") echo "selected" ?>>User</option>
                             </select>
                         </div>
                     </div>
