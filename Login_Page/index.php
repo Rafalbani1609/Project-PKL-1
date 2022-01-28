@@ -28,7 +28,6 @@
             <input type="password" name="password" placeholder="Password" requaired>
 
             <!-- ingat saya -->
-            <input type="checkbox" checked="checked"><span>Remember Me</span>
             <input type="submit" class="tombol_login" value="LOGIN">
             <!-- Login button -->
            
