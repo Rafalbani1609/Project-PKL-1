@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="stye.css">
 </head>
 
-<body>
+<body> 
     <?php 
     if(isset($_GET['pesan'])){
         if($_GET['pesan']=="gagal"){
