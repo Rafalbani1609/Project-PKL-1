@@ -66,8 +66,7 @@ if (isset($_POST['simpan'])) { //untuk create
         $error = "Silakan masukkan semua data";
     }
 }
-?>
-<!DOCTYPE html>
+?><!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -75,7 +74,8 @@ if (isset($_POST['simpan'])) { //untuk create
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Page</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <style>
         .mx-auto {
             width: 800px
@@ -83,94 +83,96 @@ if (isset($_POST['simpan'])) { //untuk create
 
         .card {
             margin-top: 10px;
-        }
+        }  
     </style>
 </head>
 
 <body>
-<a href="indexadmin.php" style ="margin-left: 100rem; margin-top: 30px;">Back</a>
+    <a href="indexadmin.php" style="margin-left: 100rem; margin-top: 30px;">Back</a>
     <div class="mx-auto">
-        <!-- untuk memasukkan data -->
-        <div class="card">
-            <div class="card-header">
-                Create / Edit Data
-            </div>
-            <div class="card-body">
-                <?php
+            <!-- untuk memasukkan data -->
+            <div class="card">
+                <div class="card-header">
+                    Create / Edit Data
+                </div>
+                <div class="card-body">
+                    <?php
                 if ($error) {
                 ?>
                     <div class="alert alert-danger" role="alert">
                         <?php echo $error ?>
                     </div>
-                <?php
+                    <?php
                     header("refresh:5;url=indexinput.php");//5 : detik
                 }
                 ?>
-                <?php
+                    <?php
                 if ($sukses) {
                 ?>
                     <div class="alert alert-success" role="alert">
                         <?php echo $sukses ?>
                     </div>
-                <?php
+                    <?php
                     header("refresh:5;url=indexinput.php");
                 }
                 ?>
-                <form action="" method="POST">
-                    <div class="mb-3 row">
-                        <label for="nim" class="col-sm-2 col-form-label">Nama</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $nama ?>">
+                    <form action="" method="POST">
+                        <div class="mb-3 row">
+                            <label for="nim" class="col-sm-2 col-form-label">Nama</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="nama" name="nama"
+                                    value="<?php echo $nama ?>">
+                            </div>
                         </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="nama" class="col-sm-2 col-form-label">Username</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="username" name="username" value="<?php echo $username ?>">
+                        <div class="mb-3 row">
+                            <label for="nama" class="col-sm-2 col-form-label">Username</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="username" name="username"
+                                    value="<?php echo $username ?>">
+                            </div>
                         </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="alamat" class="col-sm-2 col-form-label">Password</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="password" name="password" value="<?php echo $password ?>">
+                        <div class="mb-3 row">
+                            <label for="alamat" class="col-sm-2 col-form-label">Password</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="password" name="password"
+                                    value="<?php echo $password ?>">
+                            </div>
                         </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="fakultas" class="col-sm-2 col-form-label">Admin/User</label>
-                        <div class="col-sm-10">
-                            <select class="form-control" name="level" id="level">
-                                <option value="">- Pilih -</option>
-                                <option value="admin" <?php if ($level == "admin") echo "selected" ?>>Admin</option>
-                                <option value="user" <?php if ($level == "user") echo "selected" ?>>User</option>
-                            </select>
+                        <div class="mb-3 row">
+                            <label for="fakultas" class="col-sm-2 col-form-label">Admin/User</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" name="level" id="level">
+                                    <option value="">- Pilih -</option>
+                                    <option value="admin" <?php if ($level == "admin") echo "selected" ?>>Admin</option>
+                                    <option value="user" <?php if ($level == "user") echo "selected" ?>>User</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-12">
-                        <input type="submit" name="simpan" value="Simpan Data" class="btn btn-primary" />
-                    </div>
-                </form>
+                        <div class="col-12">
+                            <input type="submit" name="simpan" value="Simpan Data" class="btn btn-primary" />
+                        </div>
+                </div>
             </div>
-        </div>
 
-        <!-- untuk mengeluarkan data -->
-        <div class="card">
-            <div class="card-header text-white bg-secondary">
-                User List
-            </div>
-            <div class="card-body">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Nama</th>
-                            <th scope="col">Username</th>
-                            <th scope="col">Password</th>
-                            <th scope="col">Sebagai</th>
-                            <th scope="col">Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
+            <!-- untuk mengeluarkan data -->
+            <div class="card">
+                <div class="card-header text-white bg-secondary">
+                    User List
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Nama</th>
+                                <th scope="col">Username</th>
+                                <th scope="col">Password</th>
+                                <th scope="col">Sebagai</th>
+                                <th scope="col">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
                         $sql2   = "select * from user order by id desc";
                         $q2     = mysqli_query($koneksi, $sql2);
                         $urut   = 1;
@@ -189,18 +191,22 @@ if (isset($_POST['simpan'])) { //untuk create
                                 <td scope="row"><?php echo $password ?></td>
                                 <td scope="row"><?php echo $level ?></td>
                                 <td scope="row">
-                                    <a href="indexinput.php?op=edit&id=<?php echo $id ?>"><button type="button" class="btn btn-primary">Edit</button></a>
-                                    <a href="indexinput.php?op=delete&id=<?php echo $id?>" onclick="return confirm('Yakin mau delete data?')"><button type="button" class="btn btn-danger">Delete</button></a>            
+                                    <a href="indexinput.php?op=edit&id=<?php echo $id ?>"><button type="button"
+                                            class="btn btn-primary">Edit</button></a>
+                                    <a href="indexinput.php?op=delete&id=<?php echo $id?>"
+                                        onclick="return confirm('Yakin mau delete data?')"><button type="button"
+                                            class="btn btn-danger">Delete</button></a>
                                 </td>
                             </tr>
-                        <?php
+                            <?php
                         }
                         ?>
-                    </tbody>
-                    
-                </table>
+                        </tbody>
+
+                    </table>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
 </body>
 

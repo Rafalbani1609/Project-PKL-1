@@ -29,8 +29,7 @@
 
             <!-- ingat saya -->
             <input type="submit" class="tombol_login" value="LOGIN">
-            <!-- Login button -->
-           
+            <!-- Login button --> 
             </div>
         </div>
     </form>
